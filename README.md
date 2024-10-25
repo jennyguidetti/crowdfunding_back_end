@@ -39,7 +39,7 @@ Define your endpoints:
 | HTTP Method | URL | Purpose | Request Body | Success Response Code | Authentication/Authorisation |
 | ----------- | --- | ------- | ------------ | --------------------- | ---------------------------- |
 | GET | /users/ | Get all users | N/A | 200 | N/A |
-| POST | /users/ | Create a new user | User object | 201 | ? |
+| POST | /users/ | Create a new user | User object | 201 | N/A |
 | GET | /users/1/ | Show user with ID of "1" | N/A | 200 | Must be logged in. Must be same user. |
 | PUT | /users/1/ | Update user with ID of "1" | User object | 200 | Must be logged in. Must be same user. |
 | DELETE | /users/1/ | Delete user with ID of "1" | N/A | 200 | Must be logged in. Must be same user. |
