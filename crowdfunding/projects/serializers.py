@@ -2,9 +2,23 @@ from rest_framework import serializers
 from django.apps import apps
 
 class PledgeSerializer(serializers.ModelSerializer):
+    supporter = serializers.ReadOnlyField(source='supporter.id')
+
     class Meta:
         model = apps.get_model('projects.Pledge')
         fields = '__all__'
+
+
+class PledgeDetailSerializer(PledgeSerializer):
+
+    def update(self, instance, validated_data):
+        instance.amount = validated_data.get('amount', instance.amount)
+        instance.comment = validated_data.get('comment', instance.comment)
+        instance.anonymous = validated_data.get('anonymous', instance.anonymous)
+        instance.project = validated_data.get('project', instance.project)
+        instance.supporter = validated_data.get('supporter', instance.supporter)
+        instance.save()
+        return instance
 
 class ProjectSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.id')
