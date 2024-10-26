@@ -6,6 +6,7 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from .models import CustomUser
 from .serializers import CustomUserSerializer
+from .permissions import IsOwner
 
 class CustomUserList(APIView):
 
@@ -30,7 +31,8 @@ class CustomUserList(APIView):
 class CustomUserDetail(APIView):
 
     permission_classes = [
-        permissions.IsAuthenticated
+        permissions.IsAuthenticated,
+        IsOwner
     ]
 
     def get_object(self, pk):
@@ -41,11 +43,13 @@ class CustomUserDetail(APIView):
 
     def get(self, request, pk):
         user = self.get_object(pk)
+        self.check_object_permissions(request, user)
         serializer = CustomUserSerializer(user)
         return Response(serializer.data)
 
     def put(self, request, pk):
         user = self.get_object(pk)
+        self.check_object_permissions(request, user)
         data = request.data.copy()
         data.pop('username', None)
         data.pop('password', None)
@@ -57,6 +61,7 @@ class CustomUserDetail(APIView):
 
     def delete(self, request, pk, format=None):
         user = self.get_object(pk)
+        self.check_object_permissions(request, user)
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
