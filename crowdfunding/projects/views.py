@@ -15,8 +15,15 @@ class PledgeList(APIView):
         return Response(serializer.data)
 
     def post(self, request):
+        project_id = request.data.get('project')
+        check_exist = Pledge.objects.filter(supporter=request.user, project_id=project_id).exists()
+        if check_exist:
+            return Response(
+                {'detail': 'You have already pledged to this project.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
         data = request.data.copy()
-        data["supporter"] = request.user.id
+        data['supporter'] = request.user.id
         serializer = PledgeSerializer(data=data)
         if serializer.is_valid():
             serializer.save(supporter=request.user)
@@ -28,7 +35,7 @@ class PledgeList(APIView):
             serializer.errors,
             status=status.HTTP_400_BAD_REQUEST
         )
-    # if 
+
     
 class PledgeDetail(APIView):
     permission_classes = [
