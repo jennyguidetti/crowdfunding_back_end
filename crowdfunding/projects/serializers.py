@@ -12,7 +12,7 @@ class PledgeSerializer(serializers.ModelSerializer):
 class PledgeDetailSerializer(PledgeSerializer):
 
     def update(self, instance, validated_data):
-        instance.amount = validated_data.get('amount', instance.amount)
+        instance.hours = validated_data.get('hours', instance.hours)
         instance.comment = validated_data.get('comment', instance.comment)
         instance.anonymous = validated_data.get('anonymous', instance.anonymous)
         instance.project = validated_data.get('project', instance.project)
@@ -31,8 +31,8 @@ class ProjectDetailSerializer(ProjectSerializer):
     pledges = PledgeSerializer(many=True, read_only=True)
 
     def update(self, instance, validated_data):
-        instance.title = validated_data.get('title', instance.title)
-        instance.description = validated_data.get('description', instance.description)
+        instance.organisation_name = validated_data.get('organisation_name', instance.organisation_name)
+        instance.organisation_description = validated_data.get('organisation_description', instance.organisation_description)
         instance.goal = validated_data.get('goal', instance.goal)
         instance.image = validated_data.get('image', instance.image)
         instance.is_open = validated_data.get('is_open', instance.is_open)

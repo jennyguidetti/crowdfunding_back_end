@@ -2,8 +2,8 @@ from django.db import models
 from django.contrib.auth import get_user_model
 
 class Project(models.Model):
-    title = models.CharField(max_length=200)
-    description = models.TextField()
+    organisation_name = models.CharField(max_length=50)
+    organisation_description = models.TextField()
     goal = models.IntegerField()
     image = models.URLField()
     is_open = models.BooleanField()
@@ -15,7 +15,7 @@ class Project(models.Model):
     )
 
 class Pledge(models.Model):
-    amount = models.IntegerField()
+    hours = models.IntegerField()
     comment = models.CharField(max_length=200)
     anonymous = models.BooleanField()
     project = models.ForeignKey(
