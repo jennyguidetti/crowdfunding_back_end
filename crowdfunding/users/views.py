@@ -6,9 +6,9 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from .models import CustomUser
 from .serializers import CustomUserSerializer
-from .permissions import IsOwnerOrReadOnly
 
 class CustomUserList(APIView):
+
     def get(self, request):
         users = CustomUser.objects.all()
         serializer = CustomUserSerializer(users, many=True)
@@ -30,8 +30,7 @@ class CustomUserList(APIView):
 class CustomUserDetail(APIView):
 
     permission_classes = [
-        permissions.IsAuthenticatedOrReadOnly,
-        IsOwnerOrReadOnly
+        permissions.IsAuthenticated
     ]
 
     def get_object(self, pk):

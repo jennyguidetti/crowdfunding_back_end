@@ -28,6 +28,7 @@ class PledgeList(APIView):
             serializer.errors,
             status=status.HTTP_400_BAD_REQUEST
         )
+    # if 
     
 class PledgeDetail(APIView):
     permission_classes = [
