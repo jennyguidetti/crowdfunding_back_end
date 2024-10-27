@@ -107,7 +107,7 @@ A crowdfunding website where paramedics and ambulance services can organise work
 ![GET projects/id insomnia screenshot](../crowdfunding_back_end/img/get_projects1.png)
 
 9. Update project by ID
-![PUT projects/id insomnia screenshot](../crowdfunding_back_end/img/put_projects1.png)
+![PUT projects/id insomnia screenshot](img/put_projects1.png)
 
 10. Delete project by ID
 ![DELETE projects/id insomnia screenshot](../crowdfunding_back_end/img/delete_projects1.png)
