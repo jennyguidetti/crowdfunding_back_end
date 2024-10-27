@@ -54,79 +54,79 @@ A crowdfunding website where paramedics and ambulance services can organise work
 | POST | /api_auth_token/ | Create auth token for user | User object | 200 | N/A
 
 ### DB Schema
-![DB Schema screenshot](../crowdfunding_back_end/img/db_schema.png)
+![DB Schema screenshot](img/db_schema.png)
 
 ### How to register a new user
 1. Make POST request at /users/ endpoint
 2. Ensure 'Body' contains mandatory fields provided in JSON format: username, password, email, employer, clinical level (optional: first name, last name)
 3. Send request to receive 201 response and user details
 
-![register new user insomnia screenshot](../crowdfunding_back_end/img/register_user.png)
+![register new user insomnia screenshot](img/register_user.png)
 
 ### How to create a new project
 1. Make POST request at /api-token-auth/ endpoint
 2. Ensure 'Body' contains mandatory fields provided in JSON format: username, password
 3. Send request to receive 200 response and authorisation token
 
-![get authentication token insomnia screenshot](../crowdfunding_back_end/img/how_to_auth.png)
+![get authentication token insomnia screenshot](img/how_to_auth.png)
 
 4. Make POST request at /projects/ endpoint
 5. Select 'Auth' and then 'Bearer Token'
 6. Ensure it is enabled, then use authentication token received from step 3 as 'Token' and add prefix 'Token' (If left blank or incorrectly entered then 401 error will occur)
 
-![auth details for POST projects insomnia screenshot](../crowdfunding_back_end/img/how_to_add_project_auth.png)
+![auth details for POST projects insomnia screenshot](img/how_to_add_project_auth.png)
 
 7. Ensure 'Body" contains mandatory fields in JSON format: organisation name, organisation description, goal, image, is open, date created
 8. Send request to receive 201 response and project details
 
-![POST projects body insomnia screenshot](../crowdfunding_back_end/img/how_to_add_project_details.png)
+![POST projects body insomnia screenshot](img/how_to_add_project_details.png)
 
 ### Screenshots
 1. Get users
-![GET users insomnia screenshot](../crowdfunding_back_end/img/get_users.png)
+![GET users insomnia screenshot](img/get_users.png)
 
 2. Create new user
-![POST users insomnia screenshot](../crowdfunding_back_end/img/post_users.png)
+![POST users insomnia screenshot](img/post_users.png)
 
 3. Get user by ID
-![GET users/id insomnia screenshot](../crowdfunding_back_end/img/get_users1.png)
+![GET users/id insomnia screenshot](img/get_users1.png)
 
 4. Update user by ID
-![PUT users/id insomnia screenshot](../crowdfunding_back_end/img/put_users1.png)
+![PUT users/id insomnia screenshot](img/put_users1.png)
 
 5. Delete user by ID
-![DELETE users/id insomnia screenshot](../crowdfunding_back_end/img/delete_users1.png)
+![DELETE users/id insomnia screenshot](img/delete_users1.png)
 
 6. Get projects
-![GET projects insomnia screenshot](../crowdfunding_back_end/img/get_projects.png)
+![GET projects insomnia screenshot](img/get_projects.png)
 
 7. Create new project
-![POST projects insomnia screenshot](../crowdfunding_back_end/img/post_projects.png)
+![POST projects insomnia screenshot](img/post_projects.png)
 
 8. Get project by ID
-![GET projects/id insomnia screenshot](../crowdfunding_back_end/img/get_projects1.png)
+![GET projects/id insomnia screenshot](img/get_projects1.png)
 
 9. Update project by ID
 ![PUT projects/id insomnia screenshot](img/put_projects1.png)
 
 10. Delete project by ID
-![DELETE projects/id insomnia screenshot](../crowdfunding_back_end/img/delete_projects1.png)
+![DELETE projects/id insomnia screenshot](img/delete_projects1.png)
 
 11. Get pledges
-![GET pledges insomnia screenshot](../crowdfunding_back_end/img/get_pledges.png)
+![GET pledges insomnia screenshot](img/get_pledges.png)
 
 12. Create new pledge
-![POST pledges insomnia screenshot](../crowdfunding_back_end/img/post_pledges.png)
+![POST pledges insomnia screenshot](img/post_pledges.png)
 
 13. Get pledge by ID
-![GET pledges/id insomnia screenshot](../crowdfunding_back_end/img/get_pledges1.png)
+![GET pledges/id insomnia screenshot](img/get_pledges1.png)
 
 14. Update pledge by ID
-![PUT pledges/id insomnia screenshot](../crowdfunding_back_end/img/put_pledges1.png)
+![PUT pledges/id insomnia screenshot](img/put_pledges1.png)
 
 15. Delete pledge by ID
-![DELETE pledges/id insomnia screenshot](../crowdfunding_back_end/img/delete_pledges1.png)
+![DELETE pledges/id insomnia screenshot](img/delete_pledges1.png)
 
 16. Get authentication token for user
-![POST authentication insomnia screenshot](../crowdfunding_back_end/img/auth-token.png)
+![POST authentication insomnia screenshot](img/auth-token.png)
 
