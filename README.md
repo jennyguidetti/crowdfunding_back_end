@@ -16,7 +16,7 @@ A crowdfunding website where paramedics and ambulance services can organise work
 
 ## Front End Pages/Functionality
 - Homepage
-    - Top 8 list of available opportunities in ambulance services
+    - Top 3 list of available opportunities in ambulance services
     - Ability to register for user account
     - Ability to login to user account
 - Project page
