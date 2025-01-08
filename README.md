@@ -1,8 +1,6 @@
 # Crowdfunding Back End
-Jenny Guidetti
 
-## Planning:
-### Concept/Name
+## Overview
 #### ParamediXPlus
 Link to the deployed project https://paramedixplus-d64ffb40bbf8.herokuapp.com/projects/
 
@@ -16,7 +14,7 @@ A crowdfunding website where paramedics and ambulance services can organise work
 - As a qualified paramedic working for the local ambulance service, I would like to see how interstate ambulance services operate differently in regards to clinical, operational and day to day protocols
 - As a well established ambulance organisation, we would like to collaborate with other ambulance services in order to improve patient outcomes and foster strong relationships
 
-### Front End Pages/Functionality
+## Front End Pages/Functionality
 - Homepage
     - Top 8 list of available opportunities in ambulance services
     - Ability to register for user account
@@ -32,7 +30,7 @@ A crowdfunding website where paramedics and ambulance services can organise work
 - Pledge detail page
     - Ability to pledge amount of hours to organisations
 
-### API Spec
+## API Spec
 
 | HTTP Method | URL | Purpose | Request Body | Success Response Code | Authentication/Authorisation |
 | ----------- | --- | ------- | ------------ | --------------------- | ---------------------------- |
@@ -53,17 +51,17 @@ A crowdfunding website where paramedics and ambulance services can organise work
 | DELETE | /pledges/:id/ | Delete a pledge by ID | N/A | 200 | Must be logged in. Must be owner of pledge. |
 | POST | /api_auth_token/ | Create auth token for user | User object | 200 | N/A
 
-### DB Schema
+## DB Schema
 ![DB Schema screenshot](img/db_schema.png)
 
-### How to register a new user
+## How to register a new user
 1. Make POST request at /users/ endpoint
 2. Ensure 'Body' contains mandatory fields provided in JSON format: username, password, email, employer, clinical level (optional: first name, last name)
 3. Send request to receive 201 response and user details
 
 ![register new user insomnia screenshot](img/register_user.png)
 
-### How to create a new project
+## How to create a new project
 1. Make POST request at /api-token-auth/ endpoint
 2. Ensure 'Body' contains mandatory fields provided in JSON format: username, password
 3. Send request to receive 200 response and authorisation token
@@ -81,7 +79,7 @@ A crowdfunding website where paramedics and ambulance services can organise work
 
 ![POST projects body insomnia screenshot](img/how_to_add_project_details.png)
 
-### Screenshots
+## Screenshots
 1. Get users
 ![GET users insomnia screenshot](img/get_users.png)
 
