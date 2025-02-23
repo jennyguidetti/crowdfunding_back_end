@@ -10,8 +10,6 @@ from .permissions import IsOwnerOrSuperuser
 
 class CustomUserList(APIView):
 
-    permission_classes = [IsOwnerOrSuperuser]
-
     def get(self, request):
         if not request.user.is_superuser:
             return Response(
