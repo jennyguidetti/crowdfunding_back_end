@@ -2,22 +2,21 @@ from django.db import models
 from django.contrib.auth import get_user_model
 
 class Project(models.Model):
-    organisation_name = models.CharField(max_length=50)
-    organisation_description = models.TextField()
-    goal = models.IntegerField()
-    image = models.URLField()
-    is_open = models.BooleanField()
-    date_created = models.DateTimeField(auto_now_add=True)
+    organisation_name = models.CharField(max_length=100, unique=True)
+    organisation_description = models.TextField(blank=True, null=True)
+    goal = models.PositiveIntegerField(default=0)
+    image = models.URLField(blank=True, null=True)
+    is_open = models.BooleanField(default=True)
     owner = models.ForeignKey(
         get_user_model(),
         on_delete=models.CASCADE,
         related_name='owned_projects'
     )
+    date_created = models.DateTimeField(auto_now_add=True)
 
 class Pledge(models.Model):
-    hours = models.IntegerField()
-    comment = models.CharField(max_length=200)
-    anonymous = models.BooleanField()
+    hours = models.PositiveIntegerField()
+    comment = models.CharField(max_length=200, blank=True, null=True)
     project = models.ForeignKey(
         'Project',
         on_delete=models.CASCADE,
@@ -28,17 +27,3 @@ class Pledge(models.Model):
         on_delete=models.CASCADE,
         related_name='pledges'
     )
-
-# class User(models.Model):
-#     title = models.CharField(max_length=10)
-#     first_name = models.CharField(max_length=20)
-#     last_name = models.CharField(max_length=40)
-#     age = models.IntegerField()
-#     employer = models.TextField()
-#     clinical_level = models.TextField()
-#     years_experience = models.CharField(max_length=20)
-#     email = models.TextField()
-#     phone_number = models.CharField(max_length=10)
-#     postcode = models.CharField(max_length=10)
-#     is_open = models.BooleanField()
-#     date_created = models.DateTimeField(auto_now_add=True)

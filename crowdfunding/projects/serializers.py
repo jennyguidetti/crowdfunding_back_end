@@ -8,7 +8,6 @@ class PledgeSerializer(serializers.ModelSerializer):
         model = apps.get_model('projects.Pledge')
         fields = '__all__'
 
-
 class PledgeDetailSerializer(PledgeSerializer):
 
     def update(self, instance, validated_data):
