@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import CustomUser
 
 class CustomUserSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.id')
+    # owner = serializers.ReadOnlyField(source='owner.id')
     
     class Meta:
         model = CustomUser
