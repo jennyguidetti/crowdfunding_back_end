@@ -76,6 +76,8 @@ class CustomAuthToken(ObtainAuthToken):
             data=request.data,
             context={'request':request}
         )
+        if not serializer.is_valid():
+            print(serializer.errors)
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
         token, created = Token.objects.get_or_create(user=user)
