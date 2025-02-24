@@ -14,7 +14,6 @@ class PledgeDetailSerializer(PledgeSerializer):
         instance.hours = validated_data.get('hours', instance.hours)
         instance.comment = validated_data.get('comment', instance.comment)
         instance.project = validated_data.get('project', instance.project)
-        instance.supporter = validated_data.get('supporter', instance.supporter)
         instance.save()
         return instance
 
@@ -34,6 +33,5 @@ class ProjectDetailSerializer(ProjectSerializer):
         instance.goal = validated_data.get('goal', instance.goal)
         instance.image = validated_data.get('image', instance.image)
         instance.is_open = validated_data.get('is_open', instance.is_open)
-        instance.owner = validated_data.get('owner', instance.owner)
         instance.save()
         return instance
