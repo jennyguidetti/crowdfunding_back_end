@@ -31,3 +31,12 @@ class IsAdminOrSuperuserForPost (permissions.BasePermission):
             return True
 
         return request.user.is_authenticated and (request.user.is_superuser or request.user.is_staff)
+
+class IsOwnerOrSuperuser (permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        # Superusers have full access
+        if request.user.is_superuser:
+            return True
+
+        # Only allow access if user is creator of list
+        return obj.owner == request.user
