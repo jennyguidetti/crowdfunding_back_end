@@ -13,7 +13,6 @@ class PledgeDetailSerializer(PledgeSerializer):
     def update(self, instance, validated_data):
         instance.hours = validated_data.get('hours', instance.hours)
         instance.comment = validated_data.get('comment', instance.comment)
-        instance.project = validated_data.get('project', instance.project)
         instance.save()
         return instance
 

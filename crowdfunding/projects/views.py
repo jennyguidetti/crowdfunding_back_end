@@ -4,7 +4,7 @@ from rest_framework import status, permissions
 from django.http import Http404
 from .models import Project, Pledge
 from .serializers import ProjectSerializer, PledgeSerializer, ProjectDetailSerializer, PledgeDetailSerializer
-from .permissions import IsAdminOrSuperuserForPost, IsOwnerOrSuperuser, IsAdminOrSuperuser
+from .permissions import IsAdminOrSuperuserForPost, IsOwnerOrSuperuser, IsOwnerOrProjectOwnerOrSuperuser
 
 class PledgeList(APIView):
 
@@ -58,14 +58,14 @@ class PledgeList(APIView):
     
 class PledgeDetail(APIView):
 
-    permission_classes = [IsOwnerOrSuperuser]
+    permission_classes = [IsOwnerOrProjectOwnerOrSuperuser]
 
     def get_object(self, pk):
         try:
             pledge = Pledge.objects.get(pk=pk)
             self.check_object_permissions(self.request, pledge)
             return pledge
-        except Project.DoesNotExist:
+        except Pledge.DoesNotExist:
             raise Http404
 
     def get(self, request, pk):
@@ -81,7 +81,7 @@ class PledgeDetail(APIView):
             partial=True
         )
         if serializer.is_valid():
-            serializer.save(pledge=request.user)
+            serializer.save()
             return Response(serializer.data)
 
         return Response(
