@@ -40,3 +40,14 @@ class IsOwnerOrSuperuser (permissions.BasePermission):
 
         # Only allow access if user is creator of list
         return obj.owner == request.user
+
+class IsAdminOrSuperuser (permissions.BasePermission):
+    def has_permission(self, request, view):
+        return request.user.is_authenticated
+        
+    def has_object_permission(self, request, view, obj):
+        return (
+            request.user.is_superuser
+            or obj.project.owner == request.user
+            or obj.supporter == request.user
+        )

@@ -4,10 +4,11 @@ from rest_framework import status, permissions
 from django.http import Http404
 from .models import Project, Pledge
 from .serializers import ProjectSerializer, PledgeSerializer, ProjectDetailSerializer, PledgeDetailSerializer
-from .permissions import IsOwnerOrReadOnly, IsSupporterOrReadOnly, IsAdminOrSuperuserForPost, IsOwnerOrSuperuser
+from .permissions import IsAdminOrSuperuserForPost, IsOwnerOrSuperuser, IsAdminOrSuperuser
 
 class PledgeList(APIView):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    permission_classes = [permissions.IsAuthenticated]
     
     def get(self, request):
         pledges = Pledge.objects.all()
@@ -16,10 +17,28 @@ class PledgeList(APIView):
 
     def post(self, request):
         project_id = request.data.get('project')
+        
+        # Ensure the project exists before checking the owner
+        try:
+            project = Project.objects.get(id=project_id)
+        except Project.DoesNotExist:
+            return Response(
+                {'detail': 'Project not found.'},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        # prevent project owners from pledging to their own project
+        if project.owner == request.user:
+            return Response(
+                {'detail': 'You cannot request to join your own service.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # prevent users from pledging to the same project more than once
         check_exist = Pledge.objects.filter(supporter=request.user, project_id=project_id).exists()
         if check_exist:
             return Response(
-                {'detail': 'You have already pledged to this project.'},
+                {'detail': 'You have already requested to work for to this service.'},
                 status=status.HTTP_400_BAD_REQUEST
             )
         data = request.data.copy()
@@ -38,10 +57,8 @@ class PledgeList(APIView):
 
     
 class PledgeDetail(APIView):
-    permission_classes = [
-        permissions.IsAuthenticatedOrReadOnly,
-        IsSupporterOrReadOnly
-    ]
+
+    permission_classes = [IsOwnerOrSuperuser]
 
     def get_object(self, pk):
         try:
