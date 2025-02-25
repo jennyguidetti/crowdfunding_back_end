@@ -14,6 +14,10 @@ class Project(models.Model):
     )
     date_created = models.DateTimeField(auto_now_add=True)
 
+    @property
+    def total_pledges(self):
+        return self.pledges.count()
+
 class Pledge(models.Model):
     hours = models.PositiveIntegerField()
     comment = models.CharField(max_length=200, blank=True, null=True)
