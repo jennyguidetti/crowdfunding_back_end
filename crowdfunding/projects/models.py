@@ -20,7 +20,7 @@ class Project(models.Model):
 
 class Pledge(models.Model):
     hours = models.PositiveIntegerField()
-    comment = models.CharField(max_length=200, blank=True, null=True)
+    comment = models.CharField(max_length=500, blank=True, null=True)
     project = models.ForeignKey(
         'Project',
         on_delete=models.CASCADE,
