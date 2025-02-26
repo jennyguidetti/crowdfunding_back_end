@@ -66,6 +66,9 @@ class CustomUserDetail(APIView):
 
     def delete(self, request, pk, format=None):
         user = self.get_object(pk)
+        if request.user.is_superuser:
+            user.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
         self.check_object_permissions(request, user)
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

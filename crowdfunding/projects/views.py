@@ -91,6 +91,10 @@ class PledgeDetail(APIView):
     
     def delete(self, request, pk, format=None):
         pledge = self.get_object(pk)
+        if request.user.is_superuser:
+            pledge.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        self.check_object_permissions(request, pledge)
         pledge.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
@@ -152,6 +156,10 @@ class ProjectDetail(APIView):
 
     def delete(self, request, pk, format=None):
         project = self.get_object(pk)
+        if request.user.is_superuser:
+            project.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        self.check_object_permissions(request, project)
         project.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
         
